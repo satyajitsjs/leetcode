@@ -27,14 +27,8 @@ class Solution:
     """
     def removeNthFromEnd(self, head:ListNode,n: int):
         dummy = ListNode()
-        print("dummy.....",dummy.val)
-        print("dummy.....",dummy.next)
         L = dummy
         L.next = head
-        print("dummy.....2",dummy.val)
-        print("dummy.....2",dummy.next)
-        print("L.....",L.val)
-        print("L.....",L.next)
         R = head
 
         while n > 0 and R:
