@@ -4,26 +4,34 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
 
-        # check 
         n = len(nums)
+        # check  
         if n == 0:return
         k = n-2
 
+        # Set K
         for i in range(n-1,0,-1):
-            if nums[k] > nums[i]:
-                k-=1
+            if nums[k] >= nums[i]:
+                k -= 1
+            else:
+                break
         
         if k == -1:
-            self.reverse_index(0,n-1)
+            self.reverse_index(nums,0,n-1)
+            return
         else:
-            self.reverse_index(k,n-1)
+            # replace the k with next greater element
+            for i in range(n-1,0,-1):
+                if nums[i] > nums[k]:
+                    temp = nums[k]
+                    nums[k] = nums[i]
+                    nums[i] = temp
+                    break
+            self.reverse_index(nums,k+1,n-1)
         
 
 
-
-        
-
-    def reverse_index(self,start,end):
+    def reverse_index(self,nums,start,end):
         while start < end:
             nums[start],nums[end] = nums[end],nums[start]
             start += 1
@@ -31,7 +39,7 @@ class Solution:
 
 
 
-nums = [3,1,4,2]
+nums = [5,1,1]
 s = Solution()
 print(s.nextPermutation(nums))
 # print(s.reverse_index(nums,0,len(nums)-1))
